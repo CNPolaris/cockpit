@@ -39,9 +39,14 @@ export default {
     setup() {
         const items = [
             {
-                icon: "el-icon-lx-home",
+                icon: "el-icon-just-dashboard",
                 index: "/dashboard",
                 title: "实时数据",
+            },
+            {
+                icon: "el-icon-just-video",
+                index: "/video",
+                title: "监控视频"
             }
         ];
 

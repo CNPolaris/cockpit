@@ -17,6 +17,14 @@ const routes = [
                     title: '系统首页'
                 },
                 component: () => import ( /* webpackChunkName: "dashboard" */ "../views/dashboard/Dashboard.vue")
+            },
+            {
+                path: "/video",
+                name: "video",
+                meta: {
+                    title: "监控视频"
+                },
+                component: () => import("../views/video/index.vue")
             }
         ]
     }, {
