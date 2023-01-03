@@ -17,7 +17,7 @@
 
 ### 🦐数据接口与格式说明
 1. GPS数据
-    ```js
+    ```
     url: "/cockpit/gps",
     method: "get",
     data: {
@@ -29,7 +29,7 @@
     }
     ```
 2. 对地速度获取
-    ```js
+    ```
     url: "/cockpit/speed",
     method: "get",
     data: {
@@ -39,7 +39,7 @@
     }
     ```
 3. 艏向获取
-    ```js
+    ```
     url: "/cockpit/heading",
     method: "get",
     data: {
@@ -48,7 +48,7 @@
     }
     ```
 4. 转向率获取
-    ```js
+    ```
     url: "/cockpit/rot_rate",
     method: "get",
     data: {
@@ -57,7 +57,7 @@
     }
     ```
 5. 环境风数据
-    ```js
+    ```
     url: "/cockpit/wind",
     method: "get",
     data: {
@@ -68,7 +68,7 @@
     }
     ```
 6. 驾控台控制数据
-    ```js
+    ```
     url:"/cockpit/control",
     method: "get",
     data: {
