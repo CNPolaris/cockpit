@@ -41,7 +41,7 @@
 3. 艏向获取
     ```json
     url: "/cockpit/heading",
-    method: "get"
+    method: "get",
     data: {
         "time_stamp": 1145141919191,
         "heading": 150.01
@@ -70,7 +70,7 @@
 6. 驾控台控制数据
     ```json
     url:"/cockpit/control",
-    method: "get"
+    method: "get",
     data: {
         "time_stamp": 1145141919191,
         "etele": 50.0,
