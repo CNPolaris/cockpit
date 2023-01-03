@@ -1,12 +1,67 @@
 <template>
-    <div>
-        <video-player 
-            class="video-player vjs-big-play-centered" 
-            :playsinline="true" 
-            :options="playerOptions"
-            >
-        </video-player>
-    </div>
+    <el-row :gutter="10">
+        <el-col :span="20">
+            <video-player 
+                class="video-player vjs-big-play-centered" 
+                :playsinline="true" 
+                :options="playerOptions"
+                >
+            </video-player>
+        </el-col>
+        <el-col :span="4">
+            <el-row>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onLeftTopBtnClicked">
+                        <el-icon class="el-icon-just-zuoshang"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onTopBtnClicked">
+                        <el-icon class="el-icon-just-xiangshang"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onRightTopBtnClicked">
+                        <el-icon class="el-icon-just-youshang"></el-icon>
+                    </el-button>
+                </el-col>
+            </el-row>
+            <el-row style="margin-top: 10px;">
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onLeftBtnClicked">
+                        <el-icon class="el-icon-just-xiangzuo"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onAutoBtnClicked">
+                        <el-icon class="el-icon-just-youxuzidonghua"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onRightBtnClicked">
+                        <el-icon class="el-icon-just-xiangyou"></el-icon>
+                    </el-button>
+                </el-col>
+            </el-row>
+            <el-row style="margin-top: 10px;">
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onLeftBottomBtnClicked">
+                        <el-icon class="el-icon-just-zuoxia"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onBottomBtnClicked">
+                        <el-icon class="el-icon-just-xiangxia"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                    <el-button @click="onRightBottomBtnClicked">
+                        <el-icon class="el-icon-just-youxia"></el-icon>
+                    </el-button>
+                </el-col>
+            </el-row>
+        </el-col>
+    </el-row>
 </template>
 
 <script>
@@ -46,8 +101,35 @@ export default {
     },
     methods: {
         onPlayerPlay(player) {
-            console.log('player play!', player)
+            console.log('player play!', player) 
         },
+        onLeftTopBtnClicked(){
+            console.log("左上")
+        },
+        onTopBtnClicked(){
+            console.log("上")
+        },
+        onRightTopBtnClicked(){
+            console.log("右上")
+        },
+        onLeftBtnClicked(){
+            console.log("左")
+        },
+        onAutoBtnClicked(){
+            console.log("自动")
+        },
+        onRightBtnClicked(){
+            console.log("右")
+        },
+        onLeftBottomBtnClicked(){
+            console.log("左下")
+        },
+        onBottomBtnClicked(){
+            console.log("下")
+        },
+        onRightBottomBtnClicked(){
+            console.log("右下")
+        }
     }
 }
 </script>
