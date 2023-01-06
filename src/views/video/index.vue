@@ -60,6 +60,18 @@
                     </el-button>
                 </el-col>
             </el-row>
+            <el-row style="margin-top: 10px;">
+                <el-col :span="12" :xs="24">
+                    <el-button @click="onZoomInClicked">
+                        <el-icon class="el-icon-just-suofangda"></el-icon>
+                    </el-button>
+                </el-col>
+                <el-col :span="12" :xs="24">
+                    <el-button @click="onZoomOutClicked">
+                        <el-icon class="el-icon-just-suofangxiao"></el-icon>
+                    </el-button>
+                </el-col>
+            </el-row>
         </el-col>
     </el-row>
 </template>
@@ -129,6 +141,12 @@ export default {
         },
         onRightBottomBtnClicked(){
             console.log("右下")
+        },
+        onZoomOutClicked(){
+            console.log("焦距缩小")
+        },
+        onZoomInClicked(){
+            console.log("焦距放大")
         }
     }
 }
