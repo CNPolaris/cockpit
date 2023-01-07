@@ -1,6 +1,6 @@
 {
   "name": "cockpit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -9,9 +9,9 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "@videojs-player/vue": "^1.0.0",
     "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.52",
+    "flv.js": "^1.6.2",
     "md-editor-v3": "^2.2.0",
     "pinia": "^2.0.14",
     "push-dir": "^0.4.1",
@@ -19,8 +19,7 @@
     "vue": "^3.1.2",
     "vue-cropperjs": "^5.0.0",
     "vue-i18n": "^9.0.0",
-    "vue-router": "^4.0.10",
-    "vue-video-player": "^6.0.0"
+    "vue-router": "^4.0.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.3",

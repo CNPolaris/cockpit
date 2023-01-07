@@ -1,14 +1,9 @@
 <template>
     <el-row :gutter="10">
-        <el-col :span="20">
-            <video-player 
-                class="video-player vjs-big-play-centered" 
-                :playsinline="true" 
-                :options="playerOptions"
-                >
-            </video-player>
+        <el-col :span="24">
+            <video autoplay controls width="100" :muted="true" id="myVideo" />
         </el-col>
-        <el-col :span="4">
+        <!-- <el-col :span="4">
             <el-row>
                 <el-col :span="8" :xs="24">
                     <el-button @click="onLeftTopBtnClicked">
@@ -72,46 +67,83 @@
                     </el-button>
                 </el-col>
             </el-row>
-        </el-col>
+        </el-col> -->
     </el-row>
 </template>
 
 <script>
-import { VideoPlayer } from '@videojs-player/vue'
-import 'video.js/dist/video-js.css'
+import flvjs from 'flv.js/dist/flv.min.js'
 export default {
     name: "video",
-    components: {
-        VideoPlayer
-    },
     data() {
         return {
-            playerOptions: {
-                playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
-                autoplay: true, // 如果为true,浏览器准备好时开始回放。
-                muted: true, // 默认情况下将会消除任何音频。
-                loop: true, // 是否视频一结束就重新开始。
-                preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
-                language: 'zh-CN',
-                aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
-                fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
-                sources: [{
-                    type: "video/mp4", // 类型
-                    src: "https://vjs.zencdn.net/v/oceans.mp4" // url地址
-                }],
-                poster: '', // 封面地址
-                notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
-                controls: true,
-                controlBar: {
-                    timeDivider: true, // 当前时间和持续时间的分隔符
-                    durationDisplay: true, // 显示持续时间
-                    remainingTimeDisplay: false, // 是否显示剩余时间功能
-                    fullscreenToggle: true // 是否显示全屏按钮
-                },
-            }
+            flvPlayer: null,
+            webrtcUrl: "http://64broyjqi0.xuduan.vip:44832/0.flv"
         }
     },
+    mounted() {
+        this.webrtcPlay()
+    },
+    beforeDestroy() {
+        this.destoryVideo()
+    },
     methods: {
+        webrtcPlay() {
+            if (flvjs.isSupported()) {
+                if (this.flvPlayer) {
+                    this.flvPlayer.pause()
+                    this.flvPlayer.unload()
+                    this.flvPlayer.detachMediaElement()
+                    this.flvPlayer.destroy()
+                }
+                this.flvPlayer = flvjs.createPlayer(
+                {
+                    type: 'flv',
+                    url: this.webrtcUrl
+                },
+                {
+                    cors: true,  //是否跨域
+                    enableWorker: true,  //是否多线程工作
+                    anableStashBuffer: false,  //是否启用缓存
+                    stashInitialSize: 384,  //缓存大小(kb) 默认384kb
+                    autoCleanupSourceBuffer: true  //是否自动缓存
+                }
+                )
+                this.flvPlayer.attachMediaElement(document.getElementById('myVideo'))
+                this.flvPlayer.load()
+                this.flvPlayer.play()
+                //报错重连
+                this.flvPlayer.on(flvjs.Events.ERROR, (errType, errDetail) => {
+                console.log('errType:', errType)
+                console.log('errorDetail:', errDetail)
+                if(this.flvPlayer){
+                        this.destoryVideo()
+                        this.webrtcPlay()
+                    }
+                })
+            }
+        },
+        destoryVideo() {
+            if (this.flvPlayer) {
+                this.flvPlayer.pause()
+                this.flvPlayer.unload()
+                this.flvPlayer.detachMediaElement()
+                this.flvPlayer.destroy()
+                this.flvPlayer = null
+            }
+        },
+        videoPlayer() {
+            if (flvjs.isSupported()) {
+                var videoElement = document.getElementById('myVideo');
+                var flvPlayer = flvjs.createPlayer({
+                    type: 'flv',
+                    url: 'url' //你的url地址
+                });
+                flvPlayer.attachMediaElement(videoElement);
+                flvPlayer.load();
+                flvPlayer.play();
+            }
+        },
         onPlayerPlay(player) {
             console.log('player play!', player) 
         },
@@ -151,3 +183,9 @@ export default {
     }
 }
 </script>
+<style>
+    video{
+        width:100%;
+        height:auto;
+    }
+</style>
