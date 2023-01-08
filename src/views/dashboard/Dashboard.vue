@@ -162,7 +162,7 @@ export default {
             timer: null
         }
     },
-    created(){
+    mounted(){
         // this.initWebSocket()
         // getGpsApi().then(res=>{
         //     console.log(res.data)
@@ -184,11 +184,12 @@ export default {
             setTimeout(this.getControlData(), 5)
         }, 1000)
     },
-    beforeDestroy() {
+    beforeUnmount() {
         // this.ws.close()
         // clearTimeout(this.timeoutObj)
         // clearTimeout(this.serverTimeoutObj)
         clearInterval(this.timer)
+        this.timer = null
     },
     methods: {
         getGpsData(){
