@@ -78,17 +78,17 @@ export default {
     data() {
         return {
             flvPlayer: null,
-            webrtcUrl: "http://64broyjqi0.xuduan.vip:44832/0.flv"
+            url: "http://64broyjqi0.xuduan.vip:44832/0.flv"
         }
     },
     mounted() {
-        this.webrtcPlay()
+        this.videoFlvPlay()
     },
     beforeDestroy() {
-        this.destoryVideo()
+        this.destroyVideo()
     },
     methods: {
-        webrtcPlay() {
+        videoFlvPlay() {
             if (flvjs.isSupported()) {
                 if (this.flvPlayer) {
                     this.flvPlayer.pause()
@@ -99,7 +99,7 @@ export default {
                 this.flvPlayer = flvjs.createPlayer(
                 {
                     type: 'flv',
-                    url: this.webrtcUrl
+                    url: this.url
                 },
                 {
                     cors: true,  //是否跨域
@@ -117,13 +117,13 @@ export default {
                 console.log('errType:', errType)
                 console.log('errorDetail:', errDetail)
                 if(this.flvPlayer){
-                        this.destoryVideo()
-                        this.webrtcPlay()
+                        this.destroyVideo()
+                        this.videoFlvPlay()
                     }
                 })
             }
         },
-        destoryVideo() {
+        destroyVideo() {
             if (this.flvPlayer) {
                 this.flvPlayer.pause()
                 this.flvPlayer.unload()
